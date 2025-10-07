@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: hub_customer
+    description: "Hub table for Customer business keys."
+    columns:
+      - name: customer_pk
+        description: "The unique hash key for a customer in the hub."
+        tests:
+          - not_null
+          - unique
+      - name: customer_key
+        tests:
+          - not_null
+          - unique
+
+  - name: link_customer_order
+    description: "Link table connecting Customers to their Orders."
+    columns:
+      - name: link_customer_order_pk
+        tests:
+          - not_null
+          - unique
+      - name: customer_pk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('hub_customer')
+              field: customer_pk

@@ -1,5 +1,8 @@
+version: 2
+
 sources:
   - name: landing
+    database: DB_DBT_DV_POC
     schema: SCHEMA_DBT_DV_POC  # This should match the schema in Snowflake
     tables:
       - name: raw_customers
@@ -7,4 +10,6 @@ sources:
       - name: raw_products
         description: "Raw product data loaded from seeds or external source"
       - name: raw_orders
+        description: "Raw order data loaded from seeds or external source"
+      - name: raw_order_items
         description: "Raw order data loaded from seeds or external source"
