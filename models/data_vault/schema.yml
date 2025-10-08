@@ -13,6 +13,29 @@ models:
         tests:
           - not_null
           - unique
+  - name: hub_product
+    description: "Hub table for product business keys."
+    columns:
+      - name: product_pk
+        description: "The unique hash key for a product in the hub."
+        tests:
+          - not_null
+          - unique
+      - name: product_key
+        tests:
+          - not_null
+          - unique
+  - name: hub_order
+    description: "Hub table for product order keys."
+    columns:
+      - name: order_pk
+        description: "The unique hash key for a order in the hub."
+        tests:
+          - not_null
+          - unique
+      - name: product_key
+        tests:
+          - not_null
 
   - name: link_customer_order
     description: "Link table connecting Customers to their Orders."
@@ -27,3 +50,16 @@ models:
           - relationships:
               to: ref('hub_customer')
               field: customer_pk
+  - name: link_order_product
+    description: "Link table connecting order to their products."
+    columns:
+      - name: link_order_product_pk
+        tests:
+          - not_null
+          - unique
+      - name: order_pk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('hub_order')
+              field: order_pk
