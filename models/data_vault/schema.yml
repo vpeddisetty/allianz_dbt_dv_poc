@@ -26,14 +26,14 @@ models:
           - not_null
           - unique
   - name: hub_order
-    description: "Hub table for product order keys."
+    description: "Hub table for order keys."
     columns:
       - name: order_pk
         description: "The unique hash key for a order in the hub."
         tests:
           - not_null
           - unique
-      - name: product_key
+      - name: order_key
         tests:
           - not_null
 
@@ -50,6 +50,7 @@ models:
           - relationships:
               to: ref('hub_customer')
               field: customer_pk
+
   - name: link_order_product
     description: "Link table connecting order to their products."
     columns:
